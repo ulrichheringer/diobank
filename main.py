@@ -15,6 +15,7 @@ saldo = 0
 extrato = []
 
 while True:
+    # Recebe a opcao digitada pelo usuario
     option = input(operacoes)
 
     match option:
@@ -22,11 +23,13 @@ while True:
             while True:
                 valor = float(
                     input("Por favor digite um valor para o depósito: "))
+                # Nao permite valores negativos
                 if valor < 0:
                     print("Por favor, digite um valor maior do que R$0")
                     continue
                 else:
                     saldo += valor
+                    # A operacao é registrada no extrato
                     extrato.append({"op": "D", "v": valor})
                     print(
                         f"Depósito de R${valor:.2f} adicionado com sucesso a sua conta!")
@@ -56,12 +59,14 @@ while True:
                     break
                 else:
                     saldo -= valor
+                    # A operacao é registrada no extrato
                     extrato.append({"op": "S", "v": valor})
                     print(
                         f"R${valor:.2f} sacados com sucesso da sua conta!")
                     break
         case "3":
             if extrato:
+                # Imprime todas as transacoes realizadas pelo usuario
                 for i in extrato:
                     if i["op"] == "S":
                         print(f'SAQUE -> -R${i["v"]:.2f}')
