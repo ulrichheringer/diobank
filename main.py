@@ -26,11 +26,37 @@ while True:
                     print("Por favor, digite um valor maior do que R$0")
                     continue
                 else:
+                    saldo += valor
                     extrato.append({"op": "D", "v": valor})
                     print(
                         f"Depósito de {valor:.2f} adicionado com sucesso a sua conta!")
+                    break
         case "2":
-            pass
+            while True:
+                saques_diarios = 0
+                if extrato:
+                    for i in extrato:
+                        if i["op"] == "S":
+                            saques_diarios += 1
+                        else:
+                            continue
+                if saques_diarios == 3:
+                    print("O limite de saques diarios foi atingido!")
+                    break
+                valor = float(input("Digite o quanto voce quer sacar: "))
+                if valor < 0:
+                    print("Por favor, digite um valor maior do que zero")
+                    continue
+                if valor > LIMITE_POR_SAQUE:
+                    print(
+                        f"O valor digitado para o saque é maior do que o limite permitido por saque. O valor ultrapassou R${(valor-LIMITE_POR_SAQUE):.2f} do limite!")
+                    continue
+                else:
+                    saldo -= valor
+                    extrato.append({"op": "S", "v": valor})
+                    print(
+                        f"R${valor:.2f} sacados com sucesso da sua conta!")
+                    break
         case "3":
             pass
         case "4":
