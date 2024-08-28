@@ -29,7 +29,7 @@ while True:
                     saldo += valor
                     extrato.append({"op": "D", "v": valor})
                     print(
-                        f"Depósito de {valor:.2f} adicionado com sucesso a sua conta!")
+                        f"Depósito de R${valor:.2f} adicionado com sucesso a sua conta!")
                     break
         case "2":
             while True:
@@ -58,7 +58,13 @@ while True:
                         f"R${valor:.2f} sacados com sucesso da sua conta!")
                     break
         case "3":
-            pass
+            if extrato:
+                for i in extrato:
+                    if i["op"] == "S":
+                        print(f'SAQUE -> -R${i["v"]:.2f}')
+                        continue
+                    print(f'DEPOSITO -> +R${i["v"]:.2f}')
+                print(f"Balanço geral: R${saldo:.2f}")
         case "4":
             break
         case _:
