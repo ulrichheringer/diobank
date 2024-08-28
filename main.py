@@ -51,6 +51,9 @@ while True:
                     print(
                         f"O valor digitado para o saque é maior do que o limite permitido por saque. O valor ultrapassou R${(valor-LIMITE_POR_SAQUE):.2f} do limite!")
                     continue
+                elif valor > saldo:
+                    print("Voce nao tem saldo suficiente para concluir esta operacao.")
+                    break
                 else:
                     saldo -= valor
                     extrato.append({"op": "S", "v": valor})
@@ -66,6 +69,8 @@ while True:
                     print(f'DEPOSITO -> +R${i["v"]:.2f}')
                 print(f"Balanço geral: R${saldo:.2f}")
         case "4":
+            print("Saindo...")
             break
         case _:
+            print("Opçao invalida, por favor digite novamente.")
             continue
